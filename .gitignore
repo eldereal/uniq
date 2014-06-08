@@ -1,0 +1,9 @@
+src/obj
+src/bin
+src/test/obj
+src/test/bin
+*.user
+*.suo
+/test/Assembly-CSharp-vs.csproj
+/test/Assembly-CSharp.csproj
+/test/Library
