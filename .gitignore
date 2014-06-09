@@ -4,6 +4,13 @@ src/test/obj
 src/test/bin
 *.user
 *.suo
-/test/Assembly-CSharp-vs.csproj
-/test/Assembly-CSharp.csproj
+/test/*.csproj
 /test/Library
+/test/Temp
+/test/obj
+/test/bin
+/test/*.userprefs
+/test/*.pidb
+/test/*.sln
+/test/Assets/uniq.dll
+/test/Assets/uniq.dll.meta
