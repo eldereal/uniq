@@ -226,6 +226,44 @@ namespace Uniq
         }
     }
 
+    public struct ArrayEach<T>:IEnumerable<ArrayEach<T>.Enumerator, T>
+    {
+        private readonly T[] array;
+
+        public struct Enumerator:IEnumerator<T>
+        {
+            private int index;
+            private readonly T[] array;
+
+            public Enumerator(T[] array)
+            {
+                this.array = array;
+                index = -1;
+            }
+
+            public bool MoveNext()
+            {
+                index++;
+                return index < array.Length;
+            }
+
+            public T Current
+            {
+                get { return array[index]; }
+            }
+        }
+
+        public ArrayEach(T[] array)
+        {
+            this.array = array;
+        }
+
+        public Enumerator GetEnumerator()
+        {
+            return new Enumerator(array);
+        }
+    }
+
     public struct EnumerableEach<T> : IEnumerable<EnumerableEach<T>.Enumerator, T>
     {
         public struct Enumerator : IEnumerator<T>
@@ -270,32 +308,5 @@ namespace Uniq
         {
             return enumerable;
         }
-
-        /*
-         * Auto-generated        
-         * Text:
-            List<T> T ListEach
-            HashSet<T> T HashSetEach
-            LinkedList<T> T LinkedListEach
-            Stack<T> T StackEach
-            Queue<T> T QueueEach
-            Dictionary<TK,TV> KeyValuePair<TK,TV> DictionaryEach
-            SortedDictionary<TK,TV> KeyValuePair<TK,TV> SortedDictionaryEach
-            IEnumerable<T> T EnumerableEach
-        
-         * Regex:
-            (\w+)<([\w,]+)> ([\w,<>]+) (\w+)
-        
-         * Replace:
-            public static Enumerable<$4<$2>, $4<$2>.Enumerator, $3> Each<$2>(this $1<$2> list){return new Enumerable<$4<$2>, $4<$2>.Enumerator, $3>(new $4<$2>(list));}
-         */
-        public static Enumerable<ListEach<T>, ListEach<T>.Enumerator, T> Each<T>(this List<T> list) { return new Enumerable<ListEach<T>, ListEach<T>.Enumerator, T>(new ListEach<T>(list)); }
-        public static Enumerable<HashSetEach<T>, HashSetEach<T>.Enumerator, T> Each<T>(this HashSet<T> list) { return new Enumerable<HashSetEach<T>, HashSetEach<T>.Enumerator, T>(new HashSetEach<T>(list)); }
-        public static Enumerable<LinkedListEach<T>, LinkedListEach<T>.Enumerator, T> Each<T>(this LinkedList<T> list) { return new Enumerable<LinkedListEach<T>, LinkedListEach<T>.Enumerator, T>(new LinkedListEach<T>(list)); }
-        public static Enumerable<StackEach<T>, StackEach<T>.Enumerator, T> Each<T>(this Stack<T> list) { return new Enumerable<StackEach<T>, StackEach<T>.Enumerator, T>(new StackEach<T>(list)); }
-        public static Enumerable<QueueEach<T>, QueueEach<T>.Enumerator, T> Each<T>(this Queue<T> list) { return new Enumerable<QueueEach<T>, QueueEach<T>.Enumerator, T>(new QueueEach<T>(list)); }
-        public static Enumerable<DictionaryEach<TK, TV>, DictionaryEach<TK, TV>.Enumerator, KeyValuePair<TK, TV>> Each<TK, TV>(this Dictionary<TK, TV> list) { return new Enumerable<DictionaryEach<TK, TV>, DictionaryEach<TK, TV>.Enumerator, KeyValuePair<TK, TV>>(new DictionaryEach<TK, TV>(list)); }
-        public static Enumerable<SortedDictionaryEach<TK, TV>, SortedDictionaryEach<TK, TV>.Enumerator, KeyValuePair<TK, TV>> Each<TK, TV>(this SortedDictionary<TK, TV> list) { return new Enumerable<SortedDictionaryEach<TK, TV>, SortedDictionaryEach<TK, TV>.Enumerator, KeyValuePair<TK, TV>>(new SortedDictionaryEach<TK, TV>(list)); }
-        public static Enumerable<EnumerableEach<T>, EnumerableEach<T>.Enumerator, T> Each<T>(this IEnumerable<T> list) { return new Enumerable<EnumerableEach<T>, EnumerableEach<T>.Enumerator, T>(new EnumerableEach<T>(list)); }
     }
 }

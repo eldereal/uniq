@@ -63,7 +63,7 @@ If you must pass Uniq results between classes, the following method stub will he
         }
     }
 
-> Uniq works with these collections (All in `System.Collections.Generic`): 
+> Uniq works with Arrays and these collections (All in `System.Collections.Generic`): 
 > `List<T>`, `HashSet<T>`, `LinkedList<T>`, `Stack<T>`, `Queue<T>`, `Dictionary<TK,TV>`, `SortedDictionary<TK,TV>`, `IEnumerable<T>`.
 
 > If you use interface type `IEnumerable<T>`, each enumeration comes with allocating an `IEnumerator<T>` object. So don't use interface types unless you cannot avoid it.
@@ -110,7 +110,7 @@ In consideration
   * Repeat
   * Reverse
   * **Select**: done
-  * SelectMany
+  * **SelectMany**: done
   * SequenceEqual
   * Single
   * SingleOrDefault

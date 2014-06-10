@@ -4,12 +4,14 @@ using Uniq;
 
 public class Test : MonoBehaviour {
 
-    public static List<int> a = new List<int>
+    public static List<int> List1 = new List<int>
     {
         1,2,3,4,5
     };
 
-    public static List<int> b = new List<int>(10);
+    public static List<int> List2 = new List<int>(10);
+
+    public static List<int> List3 = new List<int>(10);
 
     public static Dictionary<int, int> c = new Dictionary<int, int>
     {
@@ -40,33 +42,35 @@ public class Test : MonoBehaviour {
         Profiler.BeginSample("Uniq");
 	    TestUniq.ListSelectWhere();
         TestUniq.DictionarySelectWhere();
+        TestUniq.ListSelectManyWithCache();
         Profiler.EndSample();
 
         Profiler.BeginSample("LinQ");
         TestLinq.ListSelectWhere();
         TestLinq.DictionarySelectWhere();
+        TestLinq.ListSelectManyWithCache();
         Profiler.EndSample();
 
 	}
 
     private void ListForeach()
     {
-        b.Clear();
+        List2.Clear();
         Profiler.BeginSample("List");
-        foreach (var p in a)
+        foreach (var p in List1)
         {
-            b.Add(p);
+            List2.Add(p);
         }
         Profiler.EndSample();
     }
 
     private void UniqListForeach()
     {
-        b.Clear();
+        List2.Clear();
         Profiler.BeginSample("List.Each");
-        foreach (var p in a.Each())
+        foreach (var p in List1.Each())
         {
-            b.Add(p);
+            List2.Add(p);
         }
         Profiler.EndSample();
     }

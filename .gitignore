@@ -14,3 +14,5 @@ src/test/bin
 /test/*.sln
 /test/Assets/uniq.dll
 /test/Assets/uniq.dll.meta
+/src/codegen/bin
+/src/codegen/obj
